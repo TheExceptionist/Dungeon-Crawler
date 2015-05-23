@@ -1,5 +1,8 @@
 package com.rentarosato520.dungeoncrawler.util;
 
+import com.rentarosato520.dungeoncrawler.GameMain;
+import com.rentarosato520.dungeoncrawler.mob.Entity;
+
 public class Camera {
 	private int x, y, velX, velY;
 	
@@ -24,8 +27,8 @@ public class Camera {
 		this.y = y;
 	}
 	
-	public void tick(){
-		x += velX;
-		y += velY;
+	public void tick(Entity p){
+		x = -p.getX() + GameMain.screenSize.width/2 - 60;
+		y = -p.getY() + GameMain.screenSize.height/2 - 40;
 	}
 }

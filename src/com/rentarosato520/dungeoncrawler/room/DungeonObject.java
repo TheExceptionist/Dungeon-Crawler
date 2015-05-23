@@ -1,5 +1,6 @@
 package com.rentarosato520.dungeoncrawler.room;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
@@ -7,9 +8,10 @@ import java.util.Random;
 
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 
-public abstract class DungeonObject {
+public class DungeonObject {
 	public static final Random r = new Random();
 	protected int x, y, w, h;
+	//protected boolean collidingT, collidingB, collidingL, collidingR;
 	
 	public DungeonObject(int x, int y, int w, int h){
 		this.x = x;
@@ -18,12 +20,32 @@ public abstract class DungeonObject {
 		this.h = h;
 	}
 	
-	public abstract void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity);
+	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity){
+		
+	}
 	
-	public abstract void render(Graphics g);
+	public void render(Graphics g){
+	
+	}
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x, y, w, h);
+	}
+	
+	public Rectangle getBoundsTop(){
+		return new Rectangle(x + w/25, y - h/15, w, h/14);
+	}
+	
+	public Rectangle getBoundsLeft(){
+		return new Rectangle(x - w/14, y, w/14, h);
+	}
+	
+	public Rectangle getBoundsRight(){
+		return new Rectangle(x + w, y, w/14, h);
+	}
+	
+	public Rectangle getBoundsBottom(){
+		return new Rectangle(x + w/25, y + h, w, h/14);
 	}
 	
 	public int getX() {
@@ -57,4 +79,36 @@ public abstract class DungeonObject {
 	public void setH(int h) {
 		this.h = h;
 	}
+
+	/*public boolean isCollidingT() {
+		return collidingT;
+	}
+
+	public void setCollidingT(boolean collidingT) {
+		this.collidingT = collidingT;
+	}
+
+	public boolean isCollidingB() {
+		return collidingB;
+	}
+
+	public void setCollidingB(boolean collidingB) {
+		this.collidingB = collidingB;
+	}
+
+	public boolean isCollidingL() {
+		return collidingL;
+	}
+
+	public void setCollidingL(boolean collidingL) {
+		this.collidingL = collidingL;
+	}
+
+	public boolean isCollidingR() {
+		return collidingR;
+	}
+
+	public void setCollidingR(boolean collidingR) {
+		this.collidingR = collidingR;
+	}*/
 }

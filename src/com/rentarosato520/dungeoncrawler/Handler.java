@@ -8,19 +8,25 @@ import com.rentarosato520.dungeoncrawler.room.DungeonObject;
 import com.rentarosato520.dungeoncrawler.room.Room;
 
 public class Handler {
+	public LinkedList<Entity> entity = new LinkedList<Entity>();
 	public LinkedList<DungeonObject> object= new LinkedList<DungeonObject>();
 	public LinkedList<Room> rooms = new LinkedList<Room>();
-	public LinkedList<Entity> entity = new LinkedList<Entity>();
 	
 	public void tick(){
 		for(DungeonObject DO : object){
 			DO.tick(object, entity);
+		}
+		for(Entity e : entity){
+			e.tick(object, entity);
 		}
 	}
 	
 	public void render(Graphics g){
 		for(DungeonObject DO : object){
 			DO.render(g);
+		}
+		for(Entity e : entity){
+			e.render(g);
 		}
 	}
 	
