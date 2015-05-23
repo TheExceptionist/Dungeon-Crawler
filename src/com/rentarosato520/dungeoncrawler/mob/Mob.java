@@ -50,17 +50,17 @@ public class Mob extends Entity{
 
 	public void ObjectCollision(LinkedList<DungeonObject> object, LinkedList<Entity> entity){
 		for(DungeonObject DO : object){
-			if(DO.getBoundsLeft().intersects(getBounds())){velX = 0; x = DO.getX();}
-			if(DO.getBoundsRight().intersects(getBounds())){velX = 0; x = DO.getX() + DO.getW() - w;}
+			if(DO.getBoundsLeft().intersects(getBounds())){velX = 0; x = DO.getX() + 1;}
+			if(DO.getBoundsRight().intersects(getBounds())){velX = 0; x = DO.getX() + DO.getW() - w - 1;}
 			if(DO.getBoundsBottom().intersects(getBounds())){
 				if(!jumping){
-					velY = 0; y = DO.getY() + DO.getH() - h;
+					velY = 0; 
+					y = DO.getY() + DO.getH() - h;
 					numJumps = 0;
 				}
 			}
 			if(DO.getBoundsTop().intersects(getBounds())){
-				velY = 0;
-				y = DO.getY();
+				velY *= -1;
 			}
 		}
 	}

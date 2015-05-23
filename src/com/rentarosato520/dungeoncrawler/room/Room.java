@@ -35,7 +35,7 @@ public class Room extends DungeonObject{
 				System.out.println(numCorridors+" "+maxCorridor);
 				Room room = han.rooms.get(r.nextInt(han.rooms.size()));
 				
-				if(room.numCorridors >= room.maxCorridor){continue;}
+				if(room.numCorridors >= room.maxCorridor){break;}
 				
 				int destX = Math.abs(x - room.x);
 				int destY = Math.abs(y - room.y);

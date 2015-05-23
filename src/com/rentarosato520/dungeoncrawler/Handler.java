@@ -1,6 +1,7 @@
 package com.rentarosato520.dungeoncrawler;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 import com.rentarosato520.dungeoncrawler.mob.Entity;

@@ -25,7 +25,12 @@ public class DungeonObject {
 	}
 	
 	public void render(Graphics g){
-	
+		g.setColor(Color.cyan);
+		g.drawRect(x, y, w, h);
+		g.drawRect(x, y - h/20, w, h/20);
+		g.drawRect(x - w/20, y, w/20, h);
+		g.drawRect(x + w, y, w/20, h);
+		g.drawRect(x, y + h, w, h/30);
 	}
 	
 	public Rectangle getBounds(){
@@ -33,11 +38,11 @@ public class DungeonObject {
 	}
 	
 	public Rectangle getBoundsTop(){
-		return new Rectangle(x + w/25, y - h/15, w, h/14);
+		return new Rectangle(x, y - h/20, w, h/20);
 	}
 	
 	public Rectangle getBoundsLeft(){
-		return new Rectangle(x - w/14, y, w/14, h);
+		return new Rectangle(x - w/20, y, w/20, h);
 	}
 	
 	public Rectangle getBoundsRight(){
@@ -45,7 +50,7 @@ public class DungeonObject {
 	}
 	
 	public Rectangle getBoundsBottom(){
-		return new Rectangle(x + w/25, y + h, w, h/14);
+		return new Rectangle(x, y + h, w, h/14);
 	}
 	
 	public int getX() {
