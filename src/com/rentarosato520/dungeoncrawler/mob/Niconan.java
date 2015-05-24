@@ -22,7 +22,11 @@ public class Niconan extends Intellicreature{
 		super(x, y, w, h, weight, isPlayer, han);
 		//Set player health back to 90 later
 		//For balancing now.
-		health = 90;
+		if(isPlayer){
+			health = 1000;	
+		}else{
+			health = 90;
+		}
 		maxHealth = health;
 		attack = 5;
 		speed = 7;
