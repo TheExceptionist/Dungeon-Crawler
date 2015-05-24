@@ -5,9 +5,9 @@ import java.awt.event.KeyListener;
 
 import com.rentarosato520.dungeoncrawler.GameMain;
 import com.rentarosato520.dungeoncrawler.Handler;
+import com.rentarosato520.dungeoncrawler.item.Axe;
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 import com.rentarosato520.dungeoncrawler.mob.Intellicreature;
-import com.rentarosato520.dungeoncrawler.mob.Mob;
 
 public class Input implements KeyListener{
 	private Handler h;
@@ -42,9 +42,12 @@ public class Input implements KeyListener{
 					if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){p.setVelY(p.getSpeed()); keys[1] = true;}
 					if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){p.setVelX(p.getSpeed()); keys[2] = true;}
 					if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){p.setVelX(-p.getSpeed()); keys[3] = true;}
+					
+					if(e.getKeyCode() == KeyEvent.VK_SPACE){if(p.getActiveItem() != null){((Axe) p.getActiveItem()).thrown();}}
 				}
 			}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_R){GameMain.respawn();}
 	}
 
 	@Override

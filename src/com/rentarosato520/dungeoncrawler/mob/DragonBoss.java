@@ -14,7 +14,7 @@ public class DragonBoss extends Mob{
 	public DragonBoss(float x, float y, int w, int h, float weight, Handler han) {
 		super(x, y, w, h, weight, han);
 		
-		health = 1000;
+		health = 500;
 		maxHealth = health;
 		attack = 20;
 	}

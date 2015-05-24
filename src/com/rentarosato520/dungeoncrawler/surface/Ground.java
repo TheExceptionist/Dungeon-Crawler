@@ -3,6 +3,7 @@ package com.rentarosato520.dungeoncrawler.surface;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
 import com.rentarosato520.dungeoncrawler.assets.Assets;
 
@@ -24,5 +25,13 @@ public class Ground {
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x, y - 24, w, h);
+	}
+	
+	public Line2D getLeft(){
+		return new Line2D.Float(x, y- 50, x, y + h * 2);
+	}
+	
+	public Line2D getRight(){
+		return new Line2D.Float(x + w, y- 50, x+w, y + h * 2);
 	}
 }

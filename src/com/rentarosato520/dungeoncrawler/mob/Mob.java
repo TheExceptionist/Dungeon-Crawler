@@ -8,6 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
+import com.rentarosato520.dungeoncrawler.item.Item;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
 import com.rentarosato520.dungeoncrawler.room.Room;
@@ -21,11 +22,15 @@ public class Mob extends Entity{
 	protected boolean damageOnContact = true;
 	protected boolean canKnockback = true;
 	protected Rectangle mask = new Rectangle((int) x,(int) y, w, h); 
-	protected int destX = -1, destY = -1;
+	protected int destX, destY;
 	protected boolean isDecay = false;
 	protected int decayTime = 0, decay = 0;
 	private Random ran = new Random();
 	protected int sec = 0;
+	protected int facing = 0;
+	protected Item activeItem;
+	//0 is left
+	//1 is right
 	private int n = 0;
 	//protected boolean collidingT = false, collidingB = false, collidingR = false, collidingL = false;
 	//private Item ActiveItem
@@ -51,7 +56,7 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
-		if(x < 0 - 500 || x > 0 + 1500 + 1500){
+		if(x < 0 - 500 || x > 0 + 1500 + 2000){
 			han.removeEntity(this);
 		}
 		
@@ -68,6 +73,16 @@ public class Mob extends Entity{
 			}
 		}
 		
+		if(velX < 0){
+			facing = 0;
+		}
+		
+		if(velX > 0){
+			facing = 1;
+		}
+		
+		System.out.println(velX+" "+velY);
+		
 		SurfaceCollision(han.ground);
 		mobCollision();
 		//ObjectCollision(object, entity, room, corridor);
@@ -78,6 +93,10 @@ public class Mob extends Entity{
 			die(g);
 			health = 0;
 		}
+	}
+	
+	public void heal(int amount){
+		health += amount;
 	}
 
 	@Override
@@ -105,22 +124,42 @@ public class Mob extends Entity{
 		}
 		if(sec == 5){
 			g.drawImage(Assets.Exp4, (int)x,(int) y - 24, 64, 64, null);
+			han.items.remove(activeItem);
+			activeItem = null;
 			han.entity.remove(this);
 		}
-		System.out.println(sec);
 	}
 	
 	public void wander(){
-		if(destX == -1){
+		//if(!jumping){
 			for(Ground g : han.ground){
 				if(g.getBounds().intersects(getBounds())){
 					destX = g.x + ran.nextInt(g.w);
+					numJumps = 0;
+					jumping = false;
 				}
 			}
-		}
-		if(x < destX){velX = speed;}
-		if(x > destX){velX = -speed;}
-		if(x == destX){destX = -1;}
+			
+			if(x < destX){velX = speed;}
+			if(x > destX){velX = -speed;}
+			if(x <= destX + 10 || x >= destX + 10){	
+				//System.out.println("HEllo");
+				for(Ground g : han.ground){
+					if(g.getBounds().intersects(getBounds())){
+						destX = g.x + ran.nextInt(g.w);
+						numJumps = 0;
+						jumping = false;
+					}
+					if(g.getLeft().intersects(getBounds()) || g.getRight().intersects(getBounds())){
+						if(numJumps < 2){
+							jump();
+							jumping = true;
+							destX = g.x + ran.nextInt(g.w);
+						}
+					}
+				}
+			}
+		//}
 		//if(y < destY){velY = speed;}
 		//if(y < destY){velY = speed;}
 	}
@@ -151,10 +190,18 @@ public class Mob extends Entity{
 		for(Entity e : han.entity){
 			if(e.getBounds().intersects(getBounds()) && e != this){
 				if(((Mob) e).damageOnContact){
-					((Mob) e).damage(attack);
+					if(((Mob) e).activeItem instanceof Item){
+						((Mob) e).damage(attack + ((Mob)e).activeItem.damage);
+					}else{
+						((Mob) e).damage(attack);
+					}
 				}
 				if(damageOnContact){
-					damage(((Mob) e).attack);
+					if(activeItem instanceof Item){
+						damage(((Mob) e).attack + activeItem.damage);
+					}else{
+						damage(((Mob) e).attack);
+					}
 				}
 			}
 		}
@@ -302,6 +349,22 @@ public class Mob extends Entity{
 
 	public void setDestY(int destY) {
 		this.destY = destY;
+	}
+
+	public int getFacing() {
+		return facing;
+	}
+
+	public void setFacing(int facing) {
+		this.facing = facing;
+	}
+
+	public Item getActiveItem() {
+		return activeItem;
+	}
+
+	public void setActiveItem(Item activeItem) {
+		this.activeItem = activeItem;
 	}
 	
 	

@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.genDungeon.DungeonGen;
 import com.rentarosato520.dungeoncrawler.mob.DragonBoss;
+import com.rentarosato520.dungeoncrawler.mob.Entity;
+import com.rentarosato520.dungeoncrawler.mob.Intellicreature;
 import com.rentarosato520.dungeoncrawler.mob.Mob;
 import com.rentarosato520.dungeoncrawler.mob.Niconan;
 import com.rentarosato520.dungeoncrawler.server.GameClient;
@@ -28,19 +30,35 @@ public class GameMain extends Canvas implements Runnable{
 	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	private boolean running = false;
-	private Handler h = new Handler();
+	private static Handler h = new Handler();
 	private Input input = new Input(this, h);
 	private DungeonGen gen = new DungeonGen(500, 500, 16, h);
-	private Random r = new Random();
+	private static Random r = new Random();
 	private Camera cam = new Camera(0, 0);
 	
-	private Mob p;
+	private static Mob p;
 	private Mob boss;
 	private HUD hud;
 	private Spawner s = new Spawner(h);
 	
 	private GameServer socketServer;
 	private GameClient socketClient;
+	
+	public static void respawn(){
+		for(Entity e : h.entity){
+			if(e instanceof Intellicreature){
+				if(((Intellicreature)e).isPlayer()){
+					h.entity.remove(e);
+				}
+			}
+		}
+		
+		Ground g = h.ground.get(r.nextInt(h.ground.size()));
+		
+		p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		
+		h.addEntity(p);
+	}
 	//Player username
 	public GameMain(){
 		//gen.createDungeon();
@@ -53,16 +71,18 @@ public class GameMain extends Canvas implements Runnable{
 		//DungeonObject spawn = DungeonGen.getSpawnRoom(h.object);
 		
 		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
-		for(Ground g : h.ground){
-			p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		Ground g = h.ground.get(r.nextInt(h.ground.size()));
+		
+		p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		
+		Ground g2 = h.ground.get(r.nextInt(h.ground.size()));
 			
-			boss = new DragonBoss(g.x + r.nextInt(g.w), g.y, 32, 32, 0.5f, h);
-		}
+		boss = new DragonBoss(g2.x + r.nextInt(g2.w), g2.y, 32, 32, 0.5f, h);
+		
+		hud = new HUD(h, p);
 		
 		h.addEntity(boss);
 		h.addEntity(p);
-		
-		hud = new HUD(h, p);
 	}
 	
 	public void run() {
@@ -115,6 +135,8 @@ public class GameMain extends Canvas implements Runnable{
 	}
 	
 	public void tick(){
+		hud = new HUD(h, p);
+		
 		h.tick();
 		s.tick();
 		cam.tick(p);
@@ -147,7 +169,7 @@ public class GameMain extends Canvas implements Runnable{
 		//Anything between and the other translate will be affected by the translate
 		//Allows the handler to render all of the objects
 		//g2d.scale(2, 2);
-		h.render(g);
+		h.render(g, g2d);
 		
 		g2d.translate(-cam.getX(), -cam.getY());
 		

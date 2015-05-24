@@ -3,8 +3,10 @@ package com.rentarosato520.dungeoncrawler.assets;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-	public static BufferedImage player;
+	public static BufferedImage player, player1, player2, player3;
+	public static BufferedImage playerR, playerR1, playerR2, playerR3;
 	public static BufferedImage ground, brickWall;
+	public static BufferedImage axe;
 	public static BufferedImage Zombie, Zombie1, Zombie2, Zombie3;
 	public static BufferedImage Exp, Exp1, Exp2, Exp3, Exp4;
 	public static BufferedImage Dragon, Dragon1, Dragon2, Dragon3, Dragon4, Dragon5, Dragon6, Dragon7, Dragon8, Dragon9, Dragon10, Dragon11, Dragon12, Dragon13, Dragon14, Dragon15, Dragon16, Dragon17, Dragon18, Dragon19;
@@ -13,15 +15,27 @@ public class Assets {
 	
 	public static void load(){
 		SpriteLoader load = new SpriteLoader();
-		Sprite Player = new Sprite(load.load("/FoxCharacter.png"));
+		Sprite Player = new Sprite(load.load("/Fox.png"));
 		Sprite Ground = new Sprite(load.load("/DungeonWall.png"));
 		Sprite zom = new Sprite(load.load("/Zombie.png"));
 		Sprite brick = new Sprite(load.load("/DungeonWall2.png"));
 		Sprite ex = new Sprite(load.load("/Explosion.png"));
 		Sprite drag = new Sprite(load.load("/Dragon.png"));
+		Sprite pr = new Sprite(load.load("/Fox1.png"));
+		Sprite ax = new Sprite(load.load("/BattleAxe.png"));
 		
+		axe = ax.crop(0, 0, 32, 32, 32, 32);
 		
 		player = Player.crop(0, 0, 32, 32, 32, 32);
+		player1 = Player.crop(1, 0, 32, 32, 32, 32);
+		player2 = Player.crop(2, 0, 32, 32, 32, 32);
+		player3 = Player.crop(3, 0, 32, 32, 32, 32);
+		
+		playerR = pr.crop(0, 0, 32, 32, 32, 32);
+		playerR1 = pr.crop(1, 0, 32, 32, 32, 32);
+		playerR2 = pr.crop(2, 0, 32, 32, 32, 32);
+		playerR3 = pr.crop(3, 0, 32, 32, 32, 32);
+		
 		ground = Ground.crop(0, 0, 32, 32, 32, 32);
 		
 		brickWall = brick.crop(0, 0, 32, 32, 32, 32);
