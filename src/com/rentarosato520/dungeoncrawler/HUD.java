@@ -3,9 +3,9 @@ package com.rentarosato520.dungeoncrawler;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Window;
 
 import com.rentarosato520.dungeoncrawler.mob.Mob;
+import com.rentarosato520.dungeoncrawler.mob.Niconan;
 
 public class HUD {
 	public static int health, preHealth, c; 

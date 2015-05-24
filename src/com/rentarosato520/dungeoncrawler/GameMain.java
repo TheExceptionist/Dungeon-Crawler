@@ -78,7 +78,7 @@ public class GameMain extends Canvas implements Runnable{
 		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
 		Ground g = h.ground.get(r.nextInt(h.ground.size()));
 		
-		p = new Niconan(g.x, g.y - 32, r.nextInt(48)+16, r.nextInt(48)+16, 0.5f, true, h);
+		p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
 		
 		Ground g2 = h.ground.get(r.nextInt(h.ground.size()));
 			
