@@ -30,6 +30,7 @@ import com.rentarosato520.dungeoncrawler.util.Input;
 public class GameMain extends Canvas implements Runnable{
 	public static final String name = "Dungeon Crawler The Arena";
 	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static int opto = 7;
 	public static String username = "";
 	
 	private boolean running = false;

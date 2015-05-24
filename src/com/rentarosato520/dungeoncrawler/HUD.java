@@ -26,6 +26,6 @@ public class HUD {
 		g.setColor(Color.red);
 		g.setFont(new Font(null, Font.PLAIN, 30));
 		g.drawString("Health: "+p.getHealth()+"/"+p.getMaxHealth(), 20, 30);
-		g.drawString("Safe Period: "+p.getCoolDown(), 20, 60);
+		g.drawString("Invulnerability Period: "+p.getCoolDown(), 18, 60);
 	}
 }
