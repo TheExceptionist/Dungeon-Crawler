@@ -3,6 +3,7 @@ package com.rentarosato520.dungeoncrawler.room;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -25,19 +26,15 @@ public class DungeonObject {
 	}
 	
 	public void render(Graphics g){
-		g.setColor(Color.cyan);
-		g.drawRect(x, y, w, h);
-		g.drawRect(x, y - h/20, w, h/20);
-		g.drawRect(x - w/20, y, w/20, h);
-		g.drawRect(x + w, y, w/20, h);
-		g.drawRect(x, y + h, w, h/30);
+		g.setColor(Color.blue);
+		g.drawLine(x, y, x+w, y);
 	}
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x, y, w, h);
 	}
 	
-	public Rectangle getBoundsTop(){
+	/*public Rectangle getBoundsTop(){
 		return new Rectangle(x, y - h/20, w, h/20);
 	}
 	
@@ -51,7 +48,25 @@ public class DungeonObject {
 	
 	public Rectangle getBoundsBottom(){
 		return new Rectangle(x, y + h, w, h/14);
+	}*/
+	
+	public Line2D getWallTop(){
+		return new Line2D.Float(x, y, x+w, y);
 	}
+	
+	public Line2D getWallBottom(){
+		return new Line2D.Float(x, y+h, x+w, y+h);
+	}
+	
+	public Line2D getWallRight(){
+		return new Line2D.Float(x, y, x, y+h);
+	}
+	
+	public Line2D getWallLeft(){
+		return new Line2D.Float(x+w, y, x+w, y+h);
+	}
+	
+	//public Line2D line = new Line2D.Float(p1, p2);
 	
 	public int getX() {
 		return x;

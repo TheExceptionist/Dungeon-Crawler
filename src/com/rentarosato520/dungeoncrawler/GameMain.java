@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
+import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.genDungeon.DungeonGen;
 import com.rentarosato520.dungeoncrawler.mob.Mob;
 import com.rentarosato520.dungeoncrawler.mob.Niconan;
@@ -38,10 +39,18 @@ public class GameMain extends Canvas implements Runnable{
 	//Player username
 	public GameMain(){
 		gen.createDungeon();
+		//SurfaceGen gen = new SurfaceGen(1500, h);
+		
+		//gen.createSurface();
+		
+		Assets.load();
 		
 		DungeonObject spawn = DungeonGen.getSpawnRoom(h.object);
 		
 		p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
+		//for(Ground g : h.ground){
+			//p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		//}
 		
 		h.addEntity(p);
 	}

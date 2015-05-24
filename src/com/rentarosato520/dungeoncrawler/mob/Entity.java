@@ -5,10 +5,12 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
+import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
+import com.rentarosato520.dungeoncrawler.room.Room;
 
 public abstract class Entity {
-	private Handler han;
+	protected Handler han;
 	protected boolean canInteract;
 	protected float x, y, velX, velY;
 	protected int w, h;
@@ -25,7 +27,7 @@ public abstract class Entity {
 		this.han = han;
 	}
 	
-	public abstract void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity);
+	public abstract void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor);
 	
 	public abstract void render(Graphics g);
 	

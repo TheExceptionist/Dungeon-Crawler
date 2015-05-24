@@ -2,9 +2,11 @@ package com.rentarosato520.dungeoncrawler.room;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
+import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 
 public class Room extends DungeonObject{	
@@ -14,6 +16,7 @@ public class Room extends DungeonObject{
 	public int numCorridors = 0, maxCorridor = r.nextInt(3) + 1;
 	
 	private Handler han;
+	public LinkedList<Corridor> corridor = new LinkedList<Corridor>();
 	
 	public Room(int x, int y, int w, int h, Handler han){
 		super(x, y, w, h);
@@ -30,6 +33,7 @@ public class Room extends DungeonObject{
 	}
 
 	private void genCorriders() {
+		boolean failed = false;
 		if(han.rooms.size() > 5){
 			while(numCorridors < maxCorridor){
 				System.out.println(numCorridors+" "+maxCorridor);
@@ -76,17 +80,18 @@ public class Room extends DungeonObject{
 
 	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity) {
 		super.tick(object, entity);
+		for(Corridor c : corridor){
+			
+		}
 	}
 
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.red);
-		g.fillRect(x, y, w, h);
-		g.setColor(Color.BLUE);
-		//g.drawRect(x + w, y, w/14, h);
-		//g.drawRect(x - w/14, y, w/14, h);
-		//g.drawRect(x + w/25, y - h/15, w, h/14);
-		//g.drawRect(x + w/25, y + h, w, h/14);
+		for(int x = this.x; x < this.x + w; x+=32){
+			for(int y = this.y; y < this.y + h; y+=32){
+				g.drawImage(Assets.ground, x, y, 32, 32, null);
+			}
+		}
 	}
 
 	public int getX1() {

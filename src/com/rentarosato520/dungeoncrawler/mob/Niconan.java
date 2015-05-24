@@ -1,11 +1,14 @@
 package com.rentarosato520.dungeoncrawler.mob;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
+import com.rentarosato520.dungeoncrawler.assets.Assets;
+import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
+import com.rentarosato520.dungeoncrawler.room.Room;
 
 public class Niconan extends Intellicreature{
 	//Fox
@@ -21,12 +24,11 @@ public class Niconan extends Intellicreature{
 		abilities[2] = Abilities.wallclimb;
 	}
 	
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity){
-		super.tick(object, entity);
+	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
+		super.tick(object, entity, room, corridor);
 	}
 	
 	public void render(Graphics g){
-		g.setColor(Color.BLUE);
-		g.fillRect((int) x,(int) y, w, h);
+		g.drawImage(Assets.player,(int) x,(int) y - 24, 64, 64, null);
 	}
 }
