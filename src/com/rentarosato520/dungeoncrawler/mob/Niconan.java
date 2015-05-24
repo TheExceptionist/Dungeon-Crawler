@@ -34,5 +34,6 @@ public class Niconan extends Intellicreature{
 	
 	public void render(Graphics g){
 		g.drawImage(Assets.player,(int) x,(int) y - 24, 64, 64, null);
+		super.render(g);
 	}
 }

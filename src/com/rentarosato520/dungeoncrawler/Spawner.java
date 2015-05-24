@@ -9,7 +9,7 @@ public class Spawner {
 	private Handler h;
 	private Random r = new Random();
 	private int spawnTick = 0;
-	private int spawnLim =  r.nextInt(300)+200;
+	private int spawnLim =  10;
 	private int spawnAmount = r.nextInt(5)+1;
 	
 	public Spawner(Handler h){

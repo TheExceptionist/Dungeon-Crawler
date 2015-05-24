@@ -23,7 +23,8 @@ public class Mob extends Entity{
 	protected Rectangle mask = new Rectangle((int) x,(int) y, w, h); 
 	protected int destX = -1, destY = -1;
 	private Random ran = new Random();
-	private int sec = 0;
+	protected int sec = 0;
+	private int n = 0;
 	//protected boolean collidingT = false, collidingB = false, collidingR = false, collidingL = false;
 	//private Item ActiveItem
 	public Mob(float x, float y, int w, int h, float weight, Handler han){
@@ -48,15 +49,23 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
+		if(x < 0 - 500 || x > 0 + 1500 + 500){
+			han.removeEntity(this);
+		}
+		
+		if(y < 0 - 500 || y > 0 + 1500 + 500){
+			han.removeEntity(this);
+		}
+		
 		SurfaceCollision(han.ground);
 		mobCollision();
 		//ObjectCollision(object, entity, room, corridor);
 	}
 
-	@Override
 	public void render(Graphics g) {
 		if(health <= 0){
 			die(g);
+			health = 0;
 		}
 	}
 
@@ -66,23 +75,28 @@ public class Mob extends Entity{
 	}
 	
 	public void die(Graphics g){
-		sec++;
-		if(sec == 10){
-			g.drawImage(Assets.Exp, (int)x,(int) y, w, h, null);
+		n++;
+		if(n == 6){
+			sec++;
+			n = 0;
 		}
-		if(sec == 20){
-			g.drawImage(Assets.Exp1, (int)x,(int) y, w, h, null);
+		if(sec == 1){
+			g.drawImage(Assets.Exp, (int)x,(int) y - 24, 64, 64, null);
 		}
-		if(sec == 30){
-			g.drawImage(Assets.Exp2, (int)x,(int) y, w, h, null);
+		if(sec == 2){
+			g.drawImage(Assets.Exp1, (int)x,(int) y - 24, 64, 64, null);
 		}
-		if(sec == 40){
-			g.drawImage(Assets.Exp3, (int)x,(int) y, w, h, null);
+		if(sec == 3){
+			g.drawImage(Assets.Exp2, (int)x,(int) y - 24, 64, 64, null);
 		}
-		if(sec == 50){
-			g.drawImage(Assets.Exp4, (int)x,(int) y, w, h, null);
+		if(sec == 4){
+			g.drawImage(Assets.Exp3, (int)x,(int) y - 24, 64, 64, null);
 		}
-		han.entity.remove(this);
+		if(sec == 5){
+			g.drawImage(Assets.Exp4, (int)x,(int) y - 24, 64, 64, null);
+			han.entity.remove(this);
+		}
+		System.out.println(sec);
 	}
 	
 	public void wander(){
@@ -134,6 +148,8 @@ public class Mob extends Entity{
 					numJumps = 0;
 				//}
 				falling = false;
+			}else{
+				falling = true;
 			}
 		}
 	}
