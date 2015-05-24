@@ -3,6 +3,7 @@ package com.rentarosato520.dungeoncrawler.mob;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
+import java.util.Random;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
@@ -11,11 +12,15 @@ import com.rentarosato520.dungeoncrawler.room.Room;
 import com.rentarosato520.dungeoncrawler.surface.Ground;
 
 public class Mob extends Entity{
-	protected int health, attack, speed;
+	protected int health, maxHealth, attack, speed;
 	protected Abilities[] abilities;
 	protected int numJumps = 0;
 	protected boolean shouldCollide = true;
+	protected boolean damageOnContact = true;
+	protected boolean canKnockback = true;
 	protected Rectangle mask = new Rectangle((int) x,(int) y, w, h); 
+	protected int destX = -1, destY = -1;
+	private Random ran = new Random();
 	//protected boolean collidingT = false, collidingB = false, collidingR = false, collidingL = false;
 	//private Item ActiveItem
 	public Mob(float x, float y, int w, int h, float weight, Handler han){
@@ -40,8 +45,13 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
-		//SurfaceCollision(han.ground);
-		ObjectCollision(object, entity, room, corridor);
+		if(health <= 0){
+			die();
+		}
+		
+		SurfaceCollision(han.ground);
+		mobCollision();
+		//ObjectCollision(object, entity, room, corridor);
 	}
 
 	@Override
@@ -52,6 +62,50 @@ public class Mob extends Entity{
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int) x,(int) y, w, h);
+	}
+	
+	public void die(){
+		han.removeEntity(this);
+	}
+	
+	public void wander(){
+		if(destX == -1){
+			for(Ground g : han.ground){
+				if(g.getBounds().intersects(getBounds())){
+					destX = g.x + ran.nextInt(g.w);
+				}
+			}
+		}
+		if(x < destX){velX = speed;}
+		if(x > destX){velX = -speed;}
+		if(x == destX){destX = -1;}
+		//if(y < destY){velY = speed;}
+		//if(y < destY){velY = speed;}
+	}
+	
+	public void damage(int amount){
+		health -= amount;
+		if(canKnockback){
+			knockback();
+		}
+	}
+	
+	public void knockback(){
+		velY = -10;
+		velX *= -1;
+	}
+	
+	public void mobCollision(){
+		for(Entity e : han.entity){
+			if(e.getBounds().intersects(getBounds()) && e != this){
+				if(((Mob) e).damageOnContact){
+					((Mob) e).damage(attack);
+				}
+				if(damageOnContact){
+					damage(((Mob) e).attack);
+				}
+			}
+		}
 	}
 	
 	public void SurfaceCollision(LinkedList<Ground> ground){
@@ -146,6 +200,54 @@ public class Mob extends Entity{
 
 	public void setNumJumps(int numJumps) {
 		this.numJumps = numJumps;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+	public boolean isShouldCollide() {
+		return shouldCollide;
+	}
+
+	public void setShouldCollide(boolean shouldCollide) {
+		this.shouldCollide = shouldCollide;
+	}
+
+	public boolean isDamageOnContact() {
+		return damageOnContact;
+	}
+
+	public void setDamageOnContact(boolean damageOnContact) {
+		this.damageOnContact = damageOnContact;
+	}
+
+	public boolean isCanKnockback() {
+		return canKnockback;
+	}
+
+	public void setCanKnockback(boolean canKnockback) {
+		this.canKnockback = canKnockback;
+	}
+
+	public int getDestX() {
+		return destX;
+	}
+
+	public void setDestX(int destX) {
+		this.destX = destX;
+	}
+
+	public int getDestY() {
+		return destY;
+	}
+
+	public void setDestY(int destY) {
+		this.destY = destY;
 	}
 	
 	

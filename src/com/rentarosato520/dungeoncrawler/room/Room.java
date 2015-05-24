@@ -36,7 +36,7 @@ public class Room extends DungeonObject{
 		boolean failed = false;
 		if(han.rooms.size() > 5){
 			while(numCorridors < maxCorridor){
-				System.out.println(numCorridors+" "+maxCorridor);
+				//System.out.println(numCorridors+" "+maxCorridor);
 				Room room = han.rooms.get(r.nextInt(han.rooms.size()));
 				
 				if(room.numCorridors >= room.maxCorridor){break;}
@@ -44,10 +44,11 @@ public class Room extends DungeonObject{
 				int destX = Math.abs(x - room.x);
 				int destY = Math.abs(y - room.y);
 				int dx = x - r.nextInt(destX)+5;
+				int dy = y + r.nextInt(h);
 				int CorridorW = 50;
 				
 				if(room.x < x){
-					han.addDObject(new Corridor(dx, y + r.nextInt(h), destX, CorridorW, this, room));
+					han.addDObject(new Corridor(dx, dy, destX, CorridorW, this, room));
 					if(room.y < y){
 						han.addDObject(new Corridor(dx, room.y + room.h, CorridorW, destY, this, room));
 					}else if(room.y > y + h){

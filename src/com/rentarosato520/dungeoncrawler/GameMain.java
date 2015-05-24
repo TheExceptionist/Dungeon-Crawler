@@ -15,9 +15,10 @@ import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.genDungeon.DungeonGen;
 import com.rentarosato520.dungeoncrawler.mob.Mob;
 import com.rentarosato520.dungeoncrawler.mob.Niconan;
-import com.rentarosato520.dungeoncrawler.room.DungeonObject;
 import com.rentarosato520.dungeoncrawler.server.GameClient;
 import com.rentarosato520.dungeoncrawler.server.GameServer;
+import com.rentarosato520.dungeoncrawler.surface.Ground;
+import com.rentarosato520.dungeoncrawler.surface.SurfaceGen;
 import com.rentarosato520.dungeoncrawler.util.Camera;
 import com.rentarosato520.dungeoncrawler.util.Input;
 
@@ -33,26 +34,30 @@ public class GameMain extends Canvas implements Runnable{
 	private Camera cam = new Camera(0, 0);
 	
 	private Mob p;
+	private HUD hud;
+	private Spawner s = new Spawner(h);
 	
 	private GameServer socketServer;
 	private GameClient socketClient;
 	//Player username
 	public GameMain(){
-		gen.createDungeon();
-		//SurfaceGen gen = new SurfaceGen(1500, h);
+		//gen.createDungeon();
+		SurfaceGen gen = new SurfaceGen(1500, h);
 		
-		//gen.createSurface();
+		gen.createSurface();
 		
 		Assets.load();
 		
-		DungeonObject spawn = DungeonGen.getSpawnRoom(h.object);
+		//DungeonObject spawn = DungeonGen.getSpawnRoom(h.object);
 		
-		p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
-		//for(Ground g : h.ground){
-			//p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
-		//}
+		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
+		for(Ground g : h.ground){
+			p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		}
 		
 		h.addEntity(p);
+		
+		hud = new HUD(h, p);
 	}
 	
 	public void run() {
@@ -106,7 +111,9 @@ public class GameMain extends Canvas implements Runnable{
 	
 	public void tick(){
 		h.tick();
+		s.tick();
 		cam.tick(p);
+		hud.tick();
 	}
 	
 	public void render(){
@@ -138,6 +145,8 @@ public class GameMain extends Canvas implements Runnable{
 		h.render(g);
 		
 		g2d.translate(-cam.getX(), -cam.getY());
+		
+		hud.render(g2d);
 		//Gets rid of the graphics g
 		g.dispose();
 		//Shows the buffers

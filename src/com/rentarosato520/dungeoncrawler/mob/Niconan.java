@@ -16,6 +16,7 @@ public class Niconan extends Intellicreature{
 		super(x, y, w, h, weight, isPlayer, han);
 		
 		health = 90;
+		maxHealth = health;
 		attack = 5;
 		speed = 7;
 		abilities = new Abilities[3];
@@ -26,6 +27,9 @@ public class Niconan extends Intellicreature{
 	
 	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
 		super.tick(object, entity, room, corridor);
+		if(!isPlayer){
+			wander();
+		}
 	}
 	
 	public void render(Graphics g){
