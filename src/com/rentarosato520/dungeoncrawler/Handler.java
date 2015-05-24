@@ -2,6 +2,7 @@ package com.rentarosato520.dungeoncrawler;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
@@ -10,7 +11,7 @@ import com.rentarosato520.dungeoncrawler.room.Room;
 import com.rentarosato520.dungeoncrawler.surface.Ground;
 
 public class Handler {
-	public LinkedList<Entity> entity = new LinkedList<Entity>();
+	public CopyOnWriteArrayList<Entity> entity = new CopyOnWriteArrayList<Entity>();
 	public LinkedList<DungeonObject> object= new LinkedList<DungeonObject>();
 	public LinkedList<Room> rooms = new LinkedList<Room>();
 	public LinkedList<Corridor> corridor = new LinkedList<Corridor>();

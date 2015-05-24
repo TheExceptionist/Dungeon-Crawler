@@ -1,9 +1,8 @@
 package com.rentarosato520.dungeoncrawler.room;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
@@ -79,7 +78,7 @@ public class Room extends DungeonObject{
 		}
 	}
 
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity) {
+	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity) {
 		super.tick(object, entity);
 		for(Corridor c : corridor){
 			

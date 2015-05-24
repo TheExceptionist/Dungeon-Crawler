@@ -1,8 +1,8 @@
 package com.rentarosato520.dungeoncrawler.mob;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
@@ -25,7 +25,7 @@ public class Niconan extends Intellicreature{
 		abilities[2] = Abilities.wallclimb;
 	}
 	
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
+	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
 		super.tick(object, entity, room, corridor);
 		if(!isPlayer){
 			wander();

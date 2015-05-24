@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
@@ -28,7 +29,7 @@ public class Mob extends Entity{
 	}
 
 	@Override
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor) {
+	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor) {
 		x += velX;
 		y += velY;
 		
@@ -65,7 +66,7 @@ public class Mob extends Entity{
 	}
 	
 	public void die(){
-		han.removeEntity(this);
+		han.entity.remove(this);
 	}
 	
 	public void wander(){
@@ -122,7 +123,7 @@ public class Mob extends Entity{
 	}
 
 	public void ObjectCollision(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
-		for(DungeonObject DO : object){
+		/*for(DungeonObject DO : object){
 			if(DO.getWallTop().intersects(getBounds())){
 				velY = 0; 
 				y = DO.getBounds().y + h;
@@ -140,7 +141,7 @@ public class Mob extends Entity{
 				velX = 0;
 				x = DO.getX();
 			}
-		}
+		}*/
 	}
 	//Mob commands
 	public void jump(){

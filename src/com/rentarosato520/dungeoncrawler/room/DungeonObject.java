@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 
@@ -21,7 +22,7 @@ public class DungeonObject {
 		this.h = h;
 	}
 	
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity){
+	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity){
 		
 	}
 	
@@ -50,7 +51,7 @@ public class DungeonObject {
 		return new Rectangle(x, y + h, w, h/14);
 	}*/
 	
-	public Line2D getWallTop(){
+	/*public Line2D getWallTop(){
 		return new Line2D.Float(x, y, x+w, y);
 	}
 	
@@ -59,12 +60,12 @@ public class DungeonObject {
 	}
 	
 	public Line2D getWallRight(){
-		return new Line2D.Float(x, y, x, y+h);
+		return new Line2D.Float(x, y+h, x+w, y+h);
 	}
 	
-	public Line2D getWallLeft(){
-		return new Line2D.Float(x+w, y, x+w, y+h);
-	}
+	public Line2D getWall(){
+		return new Line2D.Float(x, y+h, x+w, y+h);
+	}*/
 	
 	//public Line2D line = new Line2D.Float(p1, p2);
 	

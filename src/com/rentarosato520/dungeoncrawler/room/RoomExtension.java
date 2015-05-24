@@ -2,6 +2,7 @@ package com.rentarosato520.dungeoncrawler.room;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.mob.Entity;
 
@@ -12,7 +13,7 @@ public class RoomExtension extends DungeonObject{
 		this.r = r;
 	}
 	@Override
-	public void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity) {
+	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity) {
 		// TODO Auto-generated method stub
 		
 	}

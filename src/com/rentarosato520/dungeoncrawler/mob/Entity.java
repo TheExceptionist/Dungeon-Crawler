@@ -2,7 +2,9 @@ package com.rentarosato520.dungeoncrawler.mob;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
@@ -27,7 +29,7 @@ public abstract class Entity {
 		this.han = han;
 	}
 	
-	public abstract void tick(LinkedList<DungeonObject> object, LinkedList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor);
+	public abstract void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor);
 	
 	public abstract void render(Graphics g);
 	
