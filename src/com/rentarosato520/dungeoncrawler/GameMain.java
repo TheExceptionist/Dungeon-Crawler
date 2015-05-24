@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 import com.rentarosato520.dungeoncrawler.assets.Assets;
+import com.rentarosato520.dungeoncrawler.assets.Soundloader;
 import com.rentarosato520.dungeoncrawler.genDungeon.DungeonGen;
 import com.rentarosato520.dungeoncrawler.mob.DragonBoss;
 import com.rentarosato520.dungeoncrawler.mob.Entity;
@@ -40,6 +41,8 @@ public class GameMain extends Canvas implements Runnable{
 	private Mob boss;
 	private HUD hud;
 	private Spawner s = new Spawner(h);
+	
+	private Soundloader sound = new Soundloader();
 	
 	private GameServer socketServer;
 	private GameClient socketClient;
@@ -83,6 +86,20 @@ public class GameMain extends Canvas implements Runnable{
 		
 		h.addEntity(boss);
 		h.addEntity(p);
+		
+		if(r.nextInt(2) == 0){
+			new Thread(new Runnable(){
+				public void run() {
+					sound.load("/Main_Theme.wav");
+				}
+			}).start();
+		}else{
+			new Thread(new Runnable(){
+				public void run() {
+					sound.load("/Level_1.wav");
+				}
+			}).start();
+		}
 	}
 	
 	public void run() {

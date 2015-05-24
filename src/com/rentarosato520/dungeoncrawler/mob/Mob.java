@@ -8,6 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
+import com.rentarosato520.dungeoncrawler.assets.ClipLoader;
 import com.rentarosato520.dungeoncrawler.item.Item;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
@@ -118,6 +119,11 @@ public class Mob extends Entity{
 		}
 		if(sec == 3){
 			g.drawImage(Assets.Exp2, (int)x,(int) y - 24, 64, 64, null);
+			if(ran.nextInt(2) == 0){
+				ClipLoader.exp.play();
+			}else{
+				ClipLoader.exp1.play();
+			}
 		}
 		if(sec == 4){
 			g.drawImage(Assets.Exp3, (int)x,(int) y - 24, 64, 64, null);
@@ -166,6 +172,7 @@ public class Mob extends Entity{
 	
 	public void damage(int amount){
 		health -= amount;
+		ClipLoader.hurt.play();
 		if(canKnockback){
 			knockback();
 		}
@@ -183,7 +190,7 @@ public class Mob extends Entity{
 	
 	public void knockback(){
 		velY = -10;
-		velX *= -1;
+		velX *= 1;
 	}
 	
 	public void mobCollision(){
