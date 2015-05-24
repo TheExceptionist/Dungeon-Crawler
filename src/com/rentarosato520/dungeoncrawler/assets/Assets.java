@@ -12,6 +12,7 @@ public class Assets {
 	public static BufferedImage Dragon, Dragon1, Dragon2, Dragon3, Dragon4, Dragon5, Dragon6, Dragon7, Dragon8, Dragon9, Dragon10, Dragon11, Dragon12, Dragon13, Dragon14, Dragon15, Dragon16, Dragon17, Dragon18, Dragon19;
 	public static BufferedImage Dragon20, Dragon21, Dragon22, Dragon23, Dragon24, Dragon25, Dragon26, Dragon27, Dragon28, Dragon29, Dragon30, Dragon31, Dragon32, Dragon33, Dragon34, Dragon35, Dragon36, Dragon37, Dragon38, Dragon39;
 	public static BufferedImage Dragon40, Dragon41, Dragon42;
+	public static BufferedImage bat, bat1, bat2, bat3, bat4, bat5, bat6, bat7, bat8, bat9, bat10, bat11, bat12, bat13, bat14, bat15, bat16, bat17, bat18, bat19, bat20, bat21, bat22, bat23, bat24;
 	
 	public static void load(){
 		SpriteLoader load = new SpriteLoader();
@@ -23,6 +24,33 @@ public class Assets {
 		Sprite drag = new Sprite(load.load("/Dragon.png"));
 		Sprite pr = new Sprite(load.load("/Fox1.png"));
 		Sprite ax = new Sprite(load.load("/BattleAxe.png"));
+		Sprite ba = new Sprite(load.load("/Bat.png"));
+		
+		bat = ba.crop(0, 0, 32, 32, 32, 32);
+		bat1 = ba.crop(1, 0, 32, 32, 32, 32);
+		bat2 = ba.crop(2, 0, 32, 32, 32, 32);
+		bat3 = ba.crop(3, 0, 32, 32, 32, 32);
+		bat4 = ba.crop(4, 0, 32, 32, 32, 32);
+		bat5 = ba.crop(5, 0, 32, 32, 32, 32);
+		bat6 = ba.crop(6, 0, 32, 32, 32, 32);
+		bat7 = ba.crop(7, 0, 32, 32, 32, 32);
+		bat8 = ba.crop(8, 0, 32, 32, 32, 32);
+		bat9 = ba.crop(9, 0, 32, 32, 32, 32);
+		bat10 = ba.crop(10, 0, 32, 32, 32, 32);
+		bat11 = ba.crop(11, 0, 32, 32, 32, 32);
+		bat12 = ba.crop(12, 0, 32, 32, 32, 32);
+		bat13 = ba.crop(13, 0, 32, 32, 32, 32);
+		bat14 = ba.crop(14, 0, 32, 32, 32, 32);
+		bat15 = ba.crop(15, 0, 32, 32, 32, 32);
+		bat16 = ba.crop(16, 0, 32, 32, 32, 32);
+		bat17 = ba.crop(17, 0, 32, 32, 32, 32);
+		bat18 = ba.crop(18, 0, 32, 32, 32, 32);
+		bat19 = ba.crop(19, 0, 32, 32, 32, 32);
+		bat20 = ba.crop(20, 0, 32, 32, 32, 32);
+		bat21 = ba.crop(21, 0, 32, 32, 32, 32);
+		bat22 = ba.crop(22, 0, 32, 32, 32, 32);
+		bat23 = ba.crop(23, 0, 32, 32, 32, 32);
+		bat24 = ba.crop(24, 0, 32, 32, 32, 32);
 		
 		axe = ax.crop(0, 0, 32, 32, 32, 32);
 		

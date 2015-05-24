@@ -20,13 +20,19 @@ public class DragonBoss extends Mob{
 	}
 
 	public void tick(){
+		flameBreath();
 		
+		for(Entity e : han.entity){
+			if(e.getBounds().intersects(getBounds())){
+				((Mob) e).damage(attack);
+			}
+		}
 	}
 	
 	public void render(Graphics g){
 		renderDragon(g);
 		//g.setColor(Color.RED);
-		//g.drawRect((int)x + 40,(int) y + 250, 32, 32);
+		//g.drawRect((int) x,(int) y, 64*5, 64*5);
 	}
 	
 	public void renderDragon(Graphics g){

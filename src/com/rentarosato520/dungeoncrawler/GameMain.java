@@ -10,6 +10,7 @@ import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.assets.Soundloader;
@@ -29,6 +30,7 @@ import com.rentarosato520.dungeoncrawler.util.Input;
 public class GameMain extends Canvas implements Runnable{
 	public static final String name = "Dungeon Crawler The Arena";
 	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static String username = "";
 	
 	private boolean running = false;
 	private static Handler h = new Handler();
@@ -72,7 +74,7 @@ public class GameMain extends Canvas implements Runnable{
 		Assets.load();
 		
 		//DungeonObject spawn = DungeonGen.getSpawnRoom(h.object);
-		
+		//GameMain.username = JOptionPane.showInputDialog("Please input your desired username.");
 		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
 		Ground g = h.ground.get(r.nextInt(h.ground.size()));
 		
@@ -153,6 +155,7 @@ public class GameMain extends Canvas implements Runnable{
 	
 	public void tick(){
 		hud = new HUD(h, p);
+		//s = new Spawner(h, p);
 		
 		h.tick();
 		s.tick();
@@ -179,7 +182,7 @@ public class GameMain extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g.setColor(Color.black);
+		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, screenSize.width, screenSize.height);
 		
 		g2d.translate(cam.getX(), cam.getY());

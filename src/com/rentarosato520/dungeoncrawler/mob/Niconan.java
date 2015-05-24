@@ -21,7 +21,7 @@ public class Niconan extends Intellicreature{
 		super(x, y, w, h, weight, isPlayer, han);
 		//Set player health back to 90 later
 		//For balancing now.
-		health = 1000;
+		health = 90;
 		maxHealth = health;
 		attack = 5;
 		speed = 7;
@@ -30,6 +30,13 @@ public class Niconan extends Intellicreature{
 		abilities[1] = Abilities.sneakstep;
 		abilities[2] = Abilities.wallclimb;
 		
+		
+		if(!isPlayer){
+			velX = speed;
+			if(r.nextInt(2) == 0){
+				velX = -speed;
+			}
+		}
 		if(!isPlayer && r.nextInt(100) <= 20){
 			activeItem = new Axe(x, y, 32*5, 32*5, 0.5f, han, "Throwing Axe", 50, this);
 		}else{

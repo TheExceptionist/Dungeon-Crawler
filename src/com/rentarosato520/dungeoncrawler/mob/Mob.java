@@ -30,6 +30,7 @@ public class Mob extends Entity{
 	protected int sec = 0;
 	protected int facing = 0;
 	protected Item activeItem;
+	protected int coolDown = 0;
 	//0 is left
 	//1 is right
 	private int n = 0;
@@ -37,6 +38,7 @@ public class Mob extends Entity{
 	//private Item ActiveItem
 	public Mob(float x, float y, int w, int h, float weight, Handler han){
 		super(x, y, w, h, weight, han);
+	
 	}
 
 	@Override
@@ -82,7 +84,11 @@ public class Mob extends Entity{
 			facing = 1;
 		}
 		
-		System.out.println(velX+" "+velY);
+		if(coolDown > 0){
+			coolDown--;
+		}
+		
+		//System.out.println(velX+" "+velY);
 		
 		SurfaceCollision(han.ground);
 		mobCollision();
@@ -120,9 +126,9 @@ public class Mob extends Entity{
 		if(sec == 3){
 			g.drawImage(Assets.Exp2, (int)x,(int) y - 24, 64, 64, null);
 			if(ran.nextInt(2) == 0){
-				ClipLoader.exp.play();
+				//ClipLoader.exp.play();
 			}else{
-				ClipLoader.exp1.play();
+				//ClipLoader.exp1.play();
 			}
 		}
 		if(sec == 4){
@@ -138,7 +144,7 @@ public class Mob extends Entity{
 	
 	public void wander(){
 		//if(!jumping){
-			for(Ground g : han.ground){
+			/*for(Ground g : han.ground){
 				if(g.getBounds().intersects(getBounds())){
 					destX = g.x + ran.nextInt(g.w);
 					numJumps = 0;
@@ -148,19 +154,38 @@ public class Mob extends Entity{
 			
 			if(x < destX){velX = speed;}
 			if(x > destX){velX = -speed;}
-			if(x <= destX + 10 || x >= destX + 10){	
-				//System.out.println("HEllo");
+			if(x - destX < 0 && velX >= 0){*/
+		/*
+				System.out.println("HEllo");
 				for(Ground g : han.ground){
 					if(g.getBounds().intersects(getBounds())){
 						destX = g.x + ran.nextInt(g.w);
 						numJumps = 0;
 						jumping = false;
 					}
+				}
+			//}
+			if(x - destX > 0 && velX <= 0){
+				System.out.println("HEllo");
+				for(Ground g : han.ground){
+					if(g.getBounds().intersects(getBounds())){
+						destX = g.x + ran.nextInt(g.w);
+						numJumps = 0;
+						jumping = false;
+					}
+				}
+			}
+				//System.out.println("HEllo");*/
+				for(Ground g : han.ground){
+					if(g.getBounds().intersects(getBounds())){
+						numJumps = 0;
+						jumping = false;
+					}
 					if(g.getLeft().intersects(getBounds()) || g.getRight().intersects(getBounds())){
+						velX *= -1;
 						if(numJumps < 2){
 							jump();
 							jumping = true;
-							destX = g.x + ran.nextInt(g.w);
 						}
 					}
 				}
@@ -168,11 +193,10 @@ public class Mob extends Entity{
 		//}
 		//if(y < destY){velY = speed;}
 		//if(y < destY){velY = speed;}
-	}
 	
 	public void damage(int amount){
 		health -= amount;
-		ClipLoader.hurt.play();
+		//ClipLoader.hurt.play();
 		if(canKnockback){
 			knockback();
 		}
@@ -196,18 +220,13 @@ public class Mob extends Entity{
 	public void mobCollision(){
 		for(Entity e : han.entity){
 			if(e.getBounds().intersects(getBounds()) && e != this){
-				if(((Mob) e).damageOnContact){
+				if(((Mob) e).damageOnContact && coolDown <= 0){
 					if(((Mob) e).activeItem instanceof Item){
 						((Mob) e).damage(attack + ((Mob)e).activeItem.damage);
+						coolDown = 100;
 					}else{
 						((Mob) e).damage(attack);
-					}
-				}
-				if(damageOnContact){
-					if(activeItem instanceof Item){
-						damage(((Mob) e).attack + activeItem.damage);
-					}else{
-						damage(((Mob) e).attack);
+						coolDown = 100;
 					}
 				}
 			}
@@ -373,6 +392,13 @@ public class Mob extends Entity{
 	public void setActiveItem(Item activeItem) {
 		this.activeItem = activeItem;
 	}
-	
+
+	public int getCoolDown() {
+		return coolDown;
+	}
+
+	public void setCoolDown(int coolDown) {
+		this.coolDown = coolDown;
+	}
 	
 }
