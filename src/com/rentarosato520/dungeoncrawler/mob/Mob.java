@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
+import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
 import com.rentarosato520.dungeoncrawler.room.Room;
@@ -22,6 +23,7 @@ public class Mob extends Entity{
 	protected Rectangle mask = new Rectangle((int) x,(int) y, w, h); 
 	protected int destX = -1, destY = -1;
 	private Random ran = new Random();
+	private int sec = 0;
 	//protected boolean collidingT = false, collidingB = false, collidingR = false, collidingL = false;
 	//private Item ActiveItem
 	public Mob(float x, float y, int w, int h, float weight, Handler han){
@@ -46,10 +48,6 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
-		if(health <= 0){
-			die();
-		}
-		
 		SurfaceCollision(han.ground);
 		mobCollision();
 		//ObjectCollision(object, entity, room, corridor);
@@ -57,7 +55,9 @@ public class Mob extends Entity{
 
 	@Override
 	public void render(Graphics g) {
-		
+		if(health <= 0){
+			die(g);
+		}
 	}
 
 	@Override
@@ -65,7 +65,23 @@ public class Mob extends Entity{
 		return new Rectangle((int) x,(int) y, w, h);
 	}
 	
-	public void die(){
+	public void die(Graphics g){
+		sec++;
+		if(sec == 10){
+			g.drawImage(Assets.Exp, (int)x,(int) y, w, h, null);
+		}
+		if(sec == 20){
+			g.drawImage(Assets.Exp1, (int)x,(int) y, w, h, null);
+		}
+		if(sec == 30){
+			g.drawImage(Assets.Exp2, (int)x,(int) y, w, h, null);
+		}
+		if(sec == 40){
+			g.drawImage(Assets.Exp3, (int)x,(int) y, w, h, null);
+		}
+		if(sec == 50){
+			g.drawImage(Assets.Exp4, (int)x,(int) y, w, h, null);
+		}
 		han.entity.remove(this);
 	}
 	

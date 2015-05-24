@@ -90,6 +90,19 @@ public class Room extends DungeonObject{
 		for(int x = this.x; x < this.x + w; x+=32){
 			for(int y = this.y; y < this.y + h; y+=32){
 				g.drawImage(Assets.ground, x, y, 32, 32, null);
+				/*if(x == this.x){
+					g.drawImage(Assets.brickWall, x, y, 32, 32, null);
+				}
+				if(y == this.y){
+					g.drawImage(Assets.brickWall, x, y, 32, 32, null);
+				}
+				System.out.println(x+" "+y+" "+this.x+" "+this.y);
+				if(x == this.x + w){
+					g.drawImage(Assets.brickWall, x - 32, y, 32, 32, null);
+				}
+				if(y == this.y + h){
+					g.drawImage(Assets.brickWall, x - 32, y, 32, 32, null);
+				}*/
 			}
 		}
 	}
