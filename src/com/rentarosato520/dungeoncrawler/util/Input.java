@@ -44,6 +44,7 @@ public class Input implements KeyListener{
 					if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){p.setVelX(-p.getSpeed()); keys[3] = true;}
 					
 					if(e.getKeyCode() == KeyEvent.VK_SPACE){if(p.getActiveItem() != null){((Axe) p.getActiveItem()).thrown();}}
+					if(e.getKeyCode() == KeyEvent.VK_SHIFT){p.isAttack = true;}
 				}
 			}
 		}
@@ -60,6 +61,8 @@ public class Input implements KeyListener{
 					if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){keys[1] = false;}
 					if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){keys[2] = false;}
 					if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){keys[3] = false;}
+					
+					if(e.getKeyCode() == KeyEvent.VK_SHIFT){p.isAttack = false;}
 					
 					if(keys[0] && keys[1]){p.setVelY(0);}
 					if(!keys[0] && !keys[1]){p.setVelY(0);}

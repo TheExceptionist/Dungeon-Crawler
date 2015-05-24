@@ -12,7 +12,7 @@ public class DragonBoss extends Mob{
 	private boolean breathfire = false;
 	
 	public DragonBoss(float x, float y, int w, int h, float weight, Handler han) {
-		super(x, y, w, h, weight, han);
+		super(x - w, y - h*5, w, h, weight, han);
 		
 		health = 500;
 		maxHealth = health;
@@ -32,12 +32,12 @@ public class DragonBoss extends Mob{
 	public void render(Graphics g){
 		renderDragon(g);
 		//g.setColor(Color.RED);
-		//g.drawRect((int) x,(int) y, 64*5, 64*5);
+		//g.drawRect((int) x + 40,(int) y + 230, w + 20, h + 20);
 	}
 	
 	public void renderDragon(Graphics g){
 		n++;
-		if(n == 4){
+		if(n == 2){
 			sec++;
 			n = 0;
 		}
@@ -175,8 +175,12 @@ public class DragonBoss extends Mob{
 		}
 	}
 	
+	public Rectangle getBounds(){
+		return new Rectangle((int)x,(int) y, 64*5, 64*5);
+	}
+	
 	public Rectangle flameRect(){
-		return new Rectangle((int)x,(int) y, w, h);
+		return new Rectangle((int) x + 40,(int) y - 200, w + 20, h + 20);
 	}
 	
 	public void flameBreath(){

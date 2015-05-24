@@ -78,7 +78,7 @@ public class GameMain extends Canvas implements Runnable{
 		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
 		Ground g = h.ground.get(r.nextInt(h.ground.size()));
 		
-		p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+		p = new Niconan(g.x, g.y - 32, r.nextInt(48)+16, r.nextInt(48)+16, 0.5f, true, h);
 		
 		Ground g2 = h.ground.get(r.nextInt(h.ground.size()));
 			
@@ -182,8 +182,11 @@ public class GameMain extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		
-		g.setColor(Color.CYAN);
-		g.fillRect(0, 0, screenSize.width, screenSize.height);
+		for(int x = 0; x < screenSize.width; x+=32){
+			for(int y = 0; y < screenSize.height; y+=32){
+				g.drawImage(Assets.dun, x, y, 32, 32, null);
+			}
+		}
 		
 		g2d.translate(cam.getX(), cam.getY());
 		//Anything between and the other translate will be affected by the translate

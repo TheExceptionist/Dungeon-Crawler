@@ -16,6 +16,7 @@ public class Niconan extends Intellicreature{
 	private int n = 0, sec = 0;
 	private boolean isWalking = false;
 	private Random r = new Random();
+	private int regTime = 0;
 	//Fox
 	public Niconan(float x, float y, int w, int h, float weight, boolean isPlayer, Handler han){
 		super(x, y, w, h, weight, isPlayer, han);
@@ -52,6 +53,9 @@ public class Niconan extends Intellicreature{
 		super.tick(object, entity, room, corridor);
 		if(!isPlayer){
 			wander();
+		}
+		if(isPlayer && health < maxHealth){
+			regen();
 		}
 	}
 	

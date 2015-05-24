@@ -14,10 +14,12 @@ public class Bat extends Mob{
 	private int n = 0, sec = 0;
 	private int targetX, targetY;
 	private Mob p;
+	private int distX, distY;
 	
 	public Bat(float x, float y, int w, int h, float weight, Handler han, Mob p) {
 		super(x, y, w, h, weight, han);
 		this.p = p;
+		this.attack = 3;
 		
 		velX = 2;
 		velY = 2;
@@ -32,6 +34,12 @@ public class Bat extends Mob{
 					targetY = (int) e.getY();
 				}
 			}
+			if(e.getBounds().intersects(getBounds())){
+				((Mob) e).damage(attack);
+				targetX = 0;
+				targetY = 0;
+				velY = -50;
+			}
 		}
 		
 		falling = false;
@@ -39,6 +47,12 @@ public class Bat extends Mob{
 		
 		x += velX; 
 		y += velY;
+		
+		distX = Math.abs((int)x - targetX);
+		distY = Math.abs((int)y - targetY);
+		
+		velX = distX/2 + 3;
+		velY = distY/2 + 3;
 		
 		if(x < targetX && velX <= 0){velX *= -1;}
 		if(x > targetX && velX >= 0){velX *= -1;}

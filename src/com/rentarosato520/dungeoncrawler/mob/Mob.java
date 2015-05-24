@@ -8,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
-import com.rentarosato520.dungeoncrawler.assets.ClipLoader;
 import com.rentarosato520.dungeoncrawler.item.Item;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
@@ -31,6 +30,8 @@ public class Mob extends Entity{
 	protected int facing = 0;
 	protected Item activeItem;
 	protected int coolDown = 0;
+	protected int regTime = 0;
+	public boolean isAttack = false;
 	//0 is left
 	//1 is right
 	private int n = 0;
@@ -59,11 +60,11 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
-		if(x < 0 - 500 || x > 0 + 1500 + 2000){
+		if(x < 0 - 500*3 || x > 0 + 1500 + 2000*3){
 			han.removeEntity(this);
 		}
 		
-		if(y < 0 - 500 || y > 0 + 1500 + 500){
+		if(y < 0 - 500*3 || y > 0 + 1500 + 2000*3){
 			han.removeEntity(this);
 		}
 		
@@ -99,6 +100,9 @@ public class Mob extends Entity{
 		if(health <= 0){
 			die(g);
 			health = 0;
+		}
+		if(isAttack){
+			attack(g);
 		}
 	}
 	
@@ -139,6 +143,14 @@ public class Mob extends Entity{
 			han.items.remove(activeItem);
 			activeItem = null;
 			han.entity.remove(this);
+		}
+	}
+	
+	public void regen(){
+		regTime++;
+		if(regTime == 100){
+			heal((maxHealth - health)/8);
+			regTime = 0;
 		}
 	}
 	
@@ -212,6 +224,24 @@ public class Mob extends Entity{
 		}
 	}
 	
+	public void attack(Graphics g){
+		for(Entity e : han.entity){
+			if(facing == 1){
+				g.drawImage(Assets.Slash, (int)x + 40,(int) y - 10, w, h, null);
+			}else{
+				g.drawImage(Assets.Slash1, (int)x - 10,(int) y - 10, w, h, null);
+			}
+		}
+	}
+	
+	public Rectangle attackRect(){
+		return new Rectangle((int)x + 40,(int) y - 10, w, h);
+	}
+	
+	public Rectangle attackRect1(){
+		return new Rectangle((int)x  - 10,(int) y - 10, w, h);
+	}
+	
 	public void knockback(){
 		velY = -10;
 		velX *= 1;
@@ -238,7 +268,7 @@ public class Mob extends Entity{
 			if(g.getBounds().intersects(getBounds())){
 				//if(!jumping){
 					velY = 0; 
-					y = g.getBounds().y + g.getBounds().height - h * 2;
+					y = (g.getBounds().y) + g.getBounds().height - h * 2;
 					numJumps = 0;
 				//}
 				falling = false;

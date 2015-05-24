@@ -13,6 +13,8 @@ public class Room extends DungeonObject{
 	public int centerX, centerY;
 	public static int numRooms = 0;
 	public int numCorridors = 0, maxCorridor = r.nextInt(3) + 1;
+	private int limTorchs = r.nextInt(10)+3;
+	private int numTorchs = 0;
 	
 	private Handler han;
 	public LinkedList<Corridor> corridor = new LinkedList<Corridor>();
@@ -28,7 +30,11 @@ public class Room extends DungeonObject{
 		
 		numRooms++;
 		
-		genCorriders();
+		//genCorriders();
+		while(numTorchs < limTorchs){
+			han.addDObject(new Torch(x + r.nextInt(w), y + r.nextInt(h), 32, 32));
+			numTorchs++;
+		}
 	}
 
 	private void genCorriders() {
