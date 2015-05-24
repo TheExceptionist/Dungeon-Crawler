@@ -31,16 +31,18 @@ public class Input implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		for(Entity en : h.entity){
-			Intellicreature p = (Intellicreature) en;
-			if(p.isPlayer()){
-				if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){
-					if(p.getNumJumps() < 2){
-						p.jump(); keys[0] = true;
+			if(en instanceof Intellicreature){
+				Intellicreature p = (Intellicreature) en;
+				if(p.isPlayer()){
+					if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){
+						if(p.getNumJumps() < 2){
+							p.jump(); keys[0] = true;
+						}
 					}
+					if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){p.setVelY(p.getSpeed()); keys[1] = true;}
+					if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){p.setVelX(p.getSpeed()); keys[2] = true;}
+					if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){p.setVelX(-p.getSpeed()); keys[3] = true;}
 				}
-				if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){p.setVelY(p.getSpeed()); keys[1] = true;}
-				if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){p.setVelX(p.getSpeed()); keys[2] = true;}
-				if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){p.setVelX(-p.getSpeed()); keys[3] = true;}
 			}
 		}
 	}
@@ -48,17 +50,19 @@ public class Input implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		for(Entity en : h.entity){
-			Intellicreature p = (Intellicreature) en;
-			if(p.isPlayer()){
-				if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){keys[0] = false;}
-				if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){keys[1] = false;}
-				if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){keys[2] = false;}
-				if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){keys[3] = false;}
-				
-				if(keys[0] && keys[1]){p.setVelY(0);}
-				if(!keys[0] && !keys[1]){p.setVelY(0);}
-				if(keys[2] && keys[3]){p.setVelX(0);}
-				if(!keys[2] && !keys[3]){p.setVelX(0);}
+			if(en instanceof Intellicreature){
+				Intellicreature p = (Intellicreature) en;
+				if(p.isPlayer()){
+					if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W){keys[0] = false;}
+					if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S){keys[1] = false;}
+					if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D){keys[2] = false;}
+					if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A){keys[3] = false;}
+					
+					if(keys[0] && keys[1]){p.setVelY(0);}
+					if(!keys[0] && !keys[1]){p.setVelY(0);}
+					if(keys[2] && keys[3]){p.setVelX(0);}
+					if(!keys[2] && !keys[3]){p.setVelX(0);}
+				}
 			}
 		}
 	}

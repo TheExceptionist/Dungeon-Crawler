@@ -37,58 +37,58 @@ public class Assets {
 		Zombie2 = zom.crop(2, 0, 32, 32, 32, 32);
 		Zombie3 = zom.crop(3, 0, 32, 32, 32, 32);
 		
-		Dragon = drag.crop(0, 0, 32, 32, 32, 32);
-		Dragon1 = drag.crop(1, 0, 32, 32, 32, 32);
-		Dragon2 = drag.crop(2, 0, 32, 32, 32, 32);
-		Dragon3 = drag.crop(3, 0, 32, 32, 32, 32);
+		Dragon = drag.crop(0, 0, 100, 100, 100, 100);
+		Dragon1 = drag.crop(1, 0, 100, 100, 100, 100);
+		Dragon2 = drag.crop(2, 0, 100, 100, 100, 100);
+		Dragon3 = drag.crop(3, 0, 100, 100, 100, 100);
 		
-		Dragon4 = drag.crop(4, 0, 32, 32, 32, 32);
-		Dragon5 = drag.crop(5, 0, 32, 32, 32, 32);
-		Dragon6 = drag.crop(6, 0, 32, 32, 32, 32);
-		Dragon7 = drag.crop(7, 0, 32, 32, 32, 32);
+		Dragon4 = drag.crop(4, 0, 100, 100, 100, 100);
+		Dragon5 = drag.crop(5, 0, 100, 100, 100, 100);
+		Dragon6 = drag.crop(6, 0, 100, 100, 100, 100);
+		Dragon7 = drag.crop(7, 0, 100, 100, 100, 100);
 		
-		Dragon8 = drag.crop(8, 0, 32, 32, 32, 32);
-		Dragon9 = drag.crop(9, 0, 32, 32, 32, 32);
-		Dragon10 = drag.crop(10, 0, 32, 32, 32, 32);
-		Dragon11 = drag.crop(11, 0, 32, 32, 32, 32);
+		Dragon8 = drag.crop(8, 0, 100, 100, 100, 100);
+		Dragon9 = drag.crop(9, 0, 100, 100, 100, 100);
+		Dragon10 = drag.crop(10, 0, 100, 100, 100, 100);
+		Dragon11 = drag.crop(11, 0, 100, 100, 100, 100);
 		
-		Dragon12 = drag.crop(12, 0, 32, 32, 32, 32);
-		Dragon13 = drag.crop(13, 0, 32, 32, 32, 32);
-		Dragon14 = drag.crop(14, 0, 32, 32, 32, 32);
-		Dragon15 = drag.crop(15, 0, 32, 32, 32, 32);
+		Dragon12 = drag.crop(12, 0, 100, 100, 100, 100);
+		Dragon13 = drag.crop(13, 0, 100, 100, 100, 100);
+		Dragon14 = drag.crop(14, 0, 100, 100, 100, 100);
+		Dragon15 = drag.crop(15, 0, 100, 100, 100, 100);
 		
-		Dragon16 = drag.crop(16, 0, 32, 32, 32, 32);
-		Dragon17 = drag.crop(17, 0, 32, 32, 32, 32);
-		Dragon18 = drag.crop(18, 0, 32, 32, 32, 32);
-		Dragon19 = drag.crop(19, 0, 32, 32, 32, 32);
+		Dragon16 = drag.crop(16, 0, 100, 100, 100, 100);
+		Dragon17 = drag.crop(17, 0, 100, 100, 100, 100);
+		Dragon18 = drag.crop(18, 0, 100, 100, 100, 100);
+		Dragon19 = drag.crop(19, 0, 100, 100, 100, 100);
 		
-		Dragon20 = drag.crop(20, 0, 32, 32, 32, 32);
-		Dragon21 = drag.crop(21, 0, 32, 32, 32, 32);
-		Dragon22 = drag.crop(22, 0, 32, 32, 32, 32);
-		Dragon23 = drag.crop(23, 0, 32, 32, 32, 32);
+		Dragon20 = drag.crop(20, 0, 100, 100, 100, 100);
+		Dragon21 = drag.crop(21, 0, 100, 100, 100, 100);
+		Dragon22 = drag.crop(22, 0, 100, 100, 100, 100);
+		Dragon23 = drag.crop(23, 0, 100, 100, 100, 100);
 		
-		Dragon24 = drag.crop(24, 0, 32, 32, 32, 32);
-		Dragon25 = drag.crop(25, 0, 32, 32, 32, 32);
-		Dragon26 = drag.crop(26, 0, 32, 32, 32, 32);
-		Dragon27 = drag.crop(27, 0, 32, 32, 32, 32);
+		Dragon24 = drag.crop(24, 0, 100, 100, 100, 100);
+		Dragon25 = drag.crop(25, 0, 100, 100, 100, 100);
+		Dragon26 = drag.crop(26, 0, 100, 100, 100, 100);
+		Dragon27 = drag.crop(27, 0, 100, 100, 100, 100);
 		
-		Dragon28 = drag.crop(28, 0, 32, 32, 32, 32);
-		Dragon29 = drag.crop(29, 0, 32, 32, 32, 32);
-		Dragon30 = drag.crop(30, 0, 32, 32, 32, 32);
-		Dragon31 = drag.crop(31, 0, 32, 32, 32, 32);
+		Dragon28 = drag.crop(28, 0, 100, 100, 100, 100);
+		Dragon29 = drag.crop(29, 0, 100, 100, 100, 100);
+		Dragon30 = drag.crop(30, 0, 100, 100, 100, 100);
+		Dragon31 = drag.crop(31, 0, 100, 100, 100, 100);
 		
-		Dragon32 = drag.crop(32, 0, 32, 32, 32, 32);
-		Dragon33 = drag.crop(33, 0, 32, 32, 32, 32);
-		Dragon34 = drag.crop(34, 0, 32, 32, 32, 32);
-		Dragon35 = drag.crop(35, 0, 32, 32, 32, 32);
+		Dragon32 = drag.crop(32, 0, 100, 100, 100, 100);
+		Dragon33 = drag.crop(33, 0, 100, 100, 100, 100);
+		Dragon34 = drag.crop(34, 0, 100, 100, 100, 100);
+		Dragon35 = drag.crop(35, 0, 100, 100, 100, 100);
 		
-		Dragon36 = drag.crop(36, 0, 32, 32, 32, 32);
-		Dragon37 = drag.crop(37, 0, 32, 32, 32, 32);
-		Dragon38 = drag.crop(38, 0, 32, 32, 32, 32);
-		Dragon39 = drag.crop(39, 0, 32, 32, 32, 32);
+		Dragon36 = drag.crop(36, 0, 100, 100, 100, 100);
+		Dragon37 = drag.crop(37, 0, 100, 100, 100, 100);
+		Dragon38 = drag.crop(38, 0, 100, 100, 100, 100);
+		Dragon39 = drag.crop(39, 0, 100, 100, 100, 100);
 		
-		Dragon40 = drag.crop(40, 0, 32, 32, 32, 32);
-		Dragon41 = drag.crop(41, 0, 32, 32, 32, 32);
-		Dragon42 = drag.crop(42, 0, 32, 32, 32, 32);
+		Dragon40 = drag.crop(40, 0, 100, 100, 100, 100);
+		Dragon41 = drag.crop(41, 0, 100, 100, 100, 100);
+		Dragon42 = drag.crop(42, 0, 100, 100, 100, 100);
 	}
 }

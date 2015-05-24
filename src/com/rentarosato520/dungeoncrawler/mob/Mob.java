@@ -22,6 +22,8 @@ public class Mob extends Entity{
 	protected boolean canKnockback = true;
 	protected Rectangle mask = new Rectangle((int) x,(int) y, w, h); 
 	protected int destX = -1, destY = -1;
+	protected boolean isDecay = false;
+	protected int decayTime = 0, decay = 0;
 	private Random ran = new Random();
 	protected int sec = 0;
 	private int n = 0;
@@ -49,12 +51,21 @@ public class Mob extends Entity{
 			falling = true;
 		}
 		
-		if(x < 0 - 500 || x > 0 + 1500 + 500){
+		if(x < 0 - 500 || x > 0 + 1500 + 1500){
 			han.removeEntity(this);
 		}
 		
 		if(y < 0 - 500 || y > 0 + 1500 + 500){
 			han.removeEntity(this);
+		}
+		
+		if(isDecay && decayTime >= 0){
+			decayTime--;
+			decay++;
+			if(decay == 20){
+				health--;
+				decay = 0;
+			}
 		}
 		
 		SurfaceCollision(han.ground);
@@ -116,6 +127,16 @@ public class Mob extends Entity{
 	
 	public void damage(int amount){
 		health -= amount;
+		if(canKnockback){
+			knockback();
+		}
+	}
+	
+	public void damage(int amount, boolean decay, int decayTime){
+		health -= amount;
+		isDecay = decay;
+		this.decayTime = decayTime;
+		
 		if(canKnockback){
 			knockback();
 		}

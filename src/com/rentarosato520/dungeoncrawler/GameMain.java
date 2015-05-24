@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 
 import com.rentarosato520.dungeoncrawler.assets.Assets;
 import com.rentarosato520.dungeoncrawler.genDungeon.DungeonGen;
+import com.rentarosato520.dungeoncrawler.mob.DragonBoss;
 import com.rentarosato520.dungeoncrawler.mob.Mob;
 import com.rentarosato520.dungeoncrawler.mob.Niconan;
 import com.rentarosato520.dungeoncrawler.server.GameClient;
@@ -34,6 +35,7 @@ public class GameMain extends Canvas implements Runnable{
 	private Camera cam = new Camera(0, 0);
 	
 	private Mob p;
+	private Mob boss;
 	private HUD hud;
 	private Spawner s = new Spawner(h);
 	
@@ -53,8 +55,11 @@ public class GameMain extends Canvas implements Runnable{
 		//p = new Niconan(r.nextInt(spawn.getW())+spawn.getX(),r.nextInt(spawn.getH())+spawn.getY(), 32, 32, 0.5f, true, h);
 		for(Ground g : h.ground){
 			p = new Niconan(g.x, g.y - 32, 32, 32, 0.5f, true, h);
+			
+			boss = new DragonBoss(g.x + r.nextInt(g.w), g.y, 32, 32, 0.5f, h);
 		}
 		
+		h.addEntity(boss);
 		h.addEntity(p);
 		
 		hud = new HUD(h, p);
