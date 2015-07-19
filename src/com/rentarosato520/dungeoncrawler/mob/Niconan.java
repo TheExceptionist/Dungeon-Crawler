@@ -24,7 +24,7 @@ public class Niconan extends Intellicreature{
 		//Set player health back to 90 later
 		//For balancing now.
 		if(isPlayer){
-			health = 1000;	
+			health = 90;	
 		}else{
 			health = 90;
 		}
@@ -52,6 +52,8 @@ public class Niconan extends Intellicreature{
 		if(activeItem != null){
 			han.items.add(activeItem);
 		}
+		
+		detectEdge = true;
 	}
 	
 	public void tick(LinkedList<DungeonObject> object, CopyOnWriteArrayList<Entity> entity, LinkedList<Room> room, LinkedList<Corridor> corridor){
@@ -75,7 +77,7 @@ public class Niconan extends Intellicreature{
 			isWalking = true;
 			if(facing == 0){
 				n++;
-				if(n ==  GameMain.opto){
+				if(n == GameMain.opto){
 					sec++;
 					n = 0;
 				}
@@ -90,12 +92,15 @@ public class Niconan extends Intellicreature{
 				}
 				if(sec == 3){
 					g.drawImage(Assets.player3,(int) x,(int) y - 24, 64, 64, null);
+				}
+				if(sec == 4){
+					g.drawImage(Assets.player,(int) x,(int) y - 24, 64, 64, null);
 					sec = 0;
 				}
 			}
 			if(facing == 1){
 				n++;
-				if(n == 7){
+				if(n == GameMain.opto){
 					sec++;
 					n = 0;
 				}
@@ -110,6 +115,9 @@ public class Niconan extends Intellicreature{
 				}
 				if(sec == 3){
 					g.drawImage(Assets.playerR3,(int) x,(int) y - 24, 64, 64, null);
+				}
+				if(sec == 4){
+					g.drawImage(Assets.playerR,(int) x,(int) y - 24, 64, 64, null);
 					sec = 0;
 				}
 			}

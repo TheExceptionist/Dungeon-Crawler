@@ -8,6 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rentarosato520.dungeoncrawler.Handler;
 import com.rentarosato520.dungeoncrawler.assets.Assets;
+import com.rentarosato520.dungeoncrawler.assets.ClipLoader;
 import com.rentarosato520.dungeoncrawler.item.Item;
 import com.rentarosato520.dungeoncrawler.room.Corridor;
 import com.rentarosato520.dungeoncrawler.room.DungeonObject;
@@ -35,6 +36,7 @@ public class Mob extends Entity{
 	//0 is left
 	//1 is right
 	private int n = 0;
+	protected boolean detectEdge = false;
 	//protected boolean collidingT = false, collidingB = false, collidingR = false, collidingL = false;
 	//private Item ActiveItem
 	public Mob(float x, float y, int w, int h, float weight, Handler han){
@@ -193,11 +195,13 @@ public class Mob extends Entity{
 						numJumps = 0;
 						jumping = false;
 					}
-					if(g.getLeft().intersects(getBounds()) || g.getRight().intersects(getBounds())){
-						velX *= -1;
-						if(numJumps < 2){
-							jump();
-							jumping = true;
+					if(detectEdge){
+						if(g.getLeft().intersects(getBounds()) || g.getRight().intersects(getBounds())){
+							velX *= -1;
+							if(numJumps < 2){
+								jump();
+								jumping = true;
+							}
 						}
 					}
 				}
@@ -268,7 +272,7 @@ public class Mob extends Entity{
 			if(g.getBounds().intersects(getBounds())){
 				//if(!jumping){
 					velY = 0; 
-					y = (g.getBounds().y) + g.getBounds().height - h * 2;
+					y = (g.getBounds().y) - g.h;
 					numJumps = 0;
 				//}
 				falling = false;

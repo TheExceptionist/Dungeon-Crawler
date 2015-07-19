@@ -37,7 +37,7 @@ public class Spawner {
 						h.addEntity(new Niconan(g.x + r.nextInt(g.w), g.y - 23, 32, 32, 0.5f, false, h));
 					}
 					if(dragonChance <= 45){
-						h.addEntity(new DragonBoss(g.x + r.nextInt(g.w), g.y - r.nextInt(g.h), 32, 32, 2.5f, h));
+						h.addEntity(new DragonBoss(g.x + r.nextInt(g.w), g.y, 32, 32, 2.5f, h));
 						break;
 					}
 					if(zombieChance <= 65){

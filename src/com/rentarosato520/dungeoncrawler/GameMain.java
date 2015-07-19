@@ -30,8 +30,10 @@ import com.rentarosato520.dungeoncrawler.util.Input;
 public class GameMain extends Canvas implements Runnable{
 	public static final String name = "Dungeon Crawler The Arena";
 	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	public static int opto = 7;
+	public static int opto = 4;
 	public static String username = "";
+	public static String text = "This took a lot of For-each loops!";
+	public static int timer = 0;
 	
 	private boolean running = false;
 	private static Handler h = new Handler();
@@ -162,6 +164,8 @@ public class GameMain extends Canvas implements Runnable{
 		s.tick();
 		cam.tick(p);
 		hud.tick();
+		
+		opto = 4;
 	}
 	
 	public void render(){
@@ -183,11 +187,13 @@ public class GameMain extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		
-		for(int x = 0; x < screenSize.width; x+=32){
+		/*for(int x = 0; x < screenSize.width; x+=32){
 			for(int y = 0; y < screenSize.height; y+=32){
 				g.drawImage(Assets.dun, x, y, 32, 32, null);
 			}
-		}
+		}*/
+		
+		g.drawImage(Assets.rain, 0, 0, screenSize.width, screenSize.height, null);
 		
 		g2d.translate(cam.getX(), cam.getY());
 		//Anything between and the other translate will be affected by the translate

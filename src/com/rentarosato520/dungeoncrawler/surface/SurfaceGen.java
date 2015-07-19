@@ -22,10 +22,7 @@ public class SurfaceGen {
 	}
 	
 	public void createSurface(){
-		if(r.nextInt(2) == 0){
-			han.addGround(new Ground(r.nextInt(w), r.nextInt(w), r.nextInt(w)+50, r.nextInt(32)+20));
-		}else{
-			while(curRooms < numRooms){
+		while(curRooms < numRooms){
 				int gx = r.nextInt(w);
 				int gy = r.nextInt(w);
 				int gw = r.nextInt(w) + 50;
@@ -42,11 +39,11 @@ public class SurfaceGen {
 					}
 					
 					if(!failed){
-						han.addGround(new Ground(gx, gy, gw, r.nextInt(32)+20));
+						han.addGround(new Ground(gx, gy, gw, /*r.nextInt(32)+*/32));
 						curRooms++;
 					}
 				}else{
-					han.addGround(new Ground(gx, gy, gw, r.nextInt(32)+20));
+					han.addGround(new Ground(gx, gy, gw, /*r.nextInt(32)+*/32));
 					curRooms++;
 				}
 			}
@@ -57,6 +54,5 @@ public class SurfaceGen {
 				
 				lim++;
 			}
-		}
 	}
 }

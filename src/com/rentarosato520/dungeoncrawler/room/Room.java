@@ -35,6 +35,7 @@ public class Room extends DungeonObject{
 			han.addDObject(new Torch(x + r.nextInt(w), y + r.nextInt(h), 32, 32));
 			numTorchs++;
 		}
+		System.out.println(numRooms);
 	}
 
 	private void genCorriders() {

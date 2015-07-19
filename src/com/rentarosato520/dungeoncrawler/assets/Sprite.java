@@ -13,4 +13,8 @@ public class Sprite {
 		//returns cropped out image of the sheet
 		return sheet.getSubimage(col * colSize, row * rowSize, w, h);
 	}
+	
+	public BufferedImage getImage(){
+		return sheet;
+	}
 }

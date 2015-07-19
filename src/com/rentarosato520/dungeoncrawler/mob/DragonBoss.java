@@ -30,6 +30,16 @@ public class DragonBoss extends Mob{
 		}
 	}
 	
+	public void flyWander(){
+		int targetX;
+		int targetY;
+		
+	}
+	
+	/*public void targetAI(){
+		
+	}*/
+	
 	public void render(Graphics g){
 		renderDragon(g);
 		//g.setColor(Color.RED);
@@ -38,7 +48,7 @@ public class DragonBoss extends Mob{
 	
 	public void renderDragon(Graphics g){
 		n++;
-		if(n == GameMain.opto){
+		if(n == 1){
 			sec++;
 			n = 0;
 		}

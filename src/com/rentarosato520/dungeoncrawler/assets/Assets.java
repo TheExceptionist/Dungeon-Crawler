@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 	public static BufferedImage player, player1, player2, player3;
 	public static BufferedImage playerR, playerR1, playerR2, playerR3;
-	public static BufferedImage ground, brickWall;
+	public static BufferedImage ground, brickWall, rain;
 	public static BufferedImage axe, dun, Slash, Slash1;
 	public static BufferedImage torch, torch1, torch2, torch3;
 	public static BufferedImage Zombie, Zombie1, Zombie2, Zombie3;
@@ -31,9 +31,12 @@ public class Assets {
 		Sprite tor = new Sprite(load.load("/Torch.png"));
 		Sprite d = new Sprite(load.load("/DungeonWall3.png"));
 		Sprite s = new Sprite(load.load("/pixel.png"));
+		Sprite r = new Sprite(load.load("/Rain.png"));
 		
 		Slash = s.crop(0, 0, 32, 32, 32, 32);
 		Slash1 = s.crop(1, 0, 32, 32, 32, 32);
+		
+		rain = r.getImage();
 		
 		dun = d.crop(0, 0, 32, 32, 32, 32);
 		

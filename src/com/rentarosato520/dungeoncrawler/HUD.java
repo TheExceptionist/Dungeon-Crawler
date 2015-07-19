@@ -23,9 +23,12 @@ public class HUD {
 	}
 	
 	public void render(Graphics g){
+		GameMain.timer++;
+		
 		g.setColor(Color.red);
 		g.setFont(new Font(null, Font.PLAIN, 30));
 		g.drawString("Health: "+p.getHealth()+"/"+p.getMaxHealth(), 20, 30);
 		g.drawString("Invulnerability Period: "+p.getCoolDown(), 18, 60);
+		g.setColor(Color.orange);
 	}
 }

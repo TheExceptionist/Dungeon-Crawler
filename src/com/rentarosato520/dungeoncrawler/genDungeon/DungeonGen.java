@@ -12,7 +12,7 @@ public class DungeonGen {
 	public static final Random ran = new Random();
 	public static int w, h, tileSize;
 	private Handler han;
-	private int numRooms = ran.nextInt(20) + 10;
+	private int numRooms = ran.nextInt(20) + 30;
 	
 	public DungeonGen(int w, int h, int tileSize, Handler han){
 		this.w = w;
@@ -32,6 +32,7 @@ public class DungeonGen {
 				boolean failed = false;
 				
 				if(Room.getNumRooms() > 0){
+					System.out.println("Ha!");
 					for(DungeonObject r : han.object){
 						if(r instanceof Room && r.getBounds().intersects(new Rectangle(x, y, ww, hh))){
 							failed = true;
